@@ -1,11 +1,18 @@
 const express = require('express')
-const UserController = require('../controllers/User')
+const ClientController = require('../controllers/ControllerClient')
+const OrderController = require('../controllers/ControllerOrder')
 const router = express.Router();
 
+//Client 
+router.get('/getCustomer', ClientController.findAll);
+router.post('/createCustomer', ClientController.create);
+router.patch('/updateCustomer/:id', ClientController.update);
+router.delete('/deleteCustomer/:id', ClientController.destroy);
 
-router.get('/', UserController.findAll);
-router.get('/:id', UserController.findOne);
-router.post('/', UserController.create);
-router.patch('/:id', UserController.update);
-router.delete('/:id', UserController.destroy);
+
+//Order
+router.get('/getOrder', OrderController.findAll);
+router.post('/createOrder', OrderController.create);
+router.patch('/updateOrder/:id', OrderController.update);
+router.delete('/deleteOrder/:id', OrderController.destroy);
 module.exports = router

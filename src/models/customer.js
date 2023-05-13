@@ -11,7 +11,7 @@ export const Customer = sequelize.define("Customer", {
 
 (async () => {
   await sequelize
-    .sync({ force: true })
+    .sync()
     .then((result) => console.log(result))
     .catch((err) => console.log(err));
 })();

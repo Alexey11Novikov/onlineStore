@@ -9,16 +9,15 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems } from './listItems';
-import Orders from './Orders';
-import TableAgGrid from './TableAgGrid';
+import OrderTable from './OrderTable';
+import CustomerTable from './CustomerTable';
+import Buttons from './Buttons';
 
 const drawerWidth = 240;
 
@@ -105,11 +104,6 @@ function DashboardContent() {
             >
               Dashboard
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -149,7 +143,20 @@ function DashboardContent() {
               {/* Recent TableAgGrid */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <TableAgGrid />
+                  <Buttons />
+                  <CustomerTable />
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={12} lg={12}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <OrderTable />
                 </Paper>
               </Grid>
             </Grid>
