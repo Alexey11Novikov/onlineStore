@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import axios from 'axios';
+import http from './http-common';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 
-const TableAgGrid = () => {
+const OrderTable = () => {
+  const [rowData, setRowData] = useState([]);
 
-
-  const [rowData] = useState([
-    { make: "Toyota", model: "Celica", price: 35000 },
-    { make: "Ford", model: "Mondeo", price: 32000 },
-    { make: "Porsche", model: "Boxster", price: 72000 }
-  ]);
+  useEffect(() => {
+    http.get("/getOrder").then((res) => setRowData(res.data[0]))
+  }, []);
 
   const [columnDefs] = useState([
     { field: 'make' },
@@ -30,4 +28,4 @@ const TableAgGrid = () => {
   );
 };
 
-export default TableAgGrid;
+export default OrderTable;

@@ -1,8 +1,11 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/db.config";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/db.config");
 
-export const Customer = sequelize.define("Customer", {
-  id: DataTypes.INTEGER,
+const Customer = sequelize.define("customer", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true
+  },
   age: DataTypes.INTEGER,
   name: DataTypes.TEXT,
   email: DataTypes.TEXT,
@@ -15,3 +18,5 @@ export const Customer = sequelize.define("Customer", {
     .then((result) => console.log(result))
     .catch((err) => console.log(err));
 })();
+
+module.exports = Customer;

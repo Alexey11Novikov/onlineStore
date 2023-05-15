@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize");
-const sequelize = new Sequelize("store_online", "admin", "admin", {
+const sequelize = new Sequelize("store_online", "postgres", "admin", {
     host: 'localhost',
     dialect: "postgres"
 });
 
-export default sequelize;
+module.exports = sequelize;

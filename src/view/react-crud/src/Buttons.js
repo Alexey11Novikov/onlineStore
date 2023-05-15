@@ -6,13 +6,13 @@ const Buttons = () => {
     return (
         <Grid container spacing={1} sx={{ marginBottom: '5px' }}>
             <Grid item>
-                <Button variant="contained" onClick>Добавить</Button>
+                <Button variant="contained" >Добавить</Button>
             </Grid>
             <Grid item>
-                <Button variant="contained" onClick>Изменить</Button>
+                <Button variant="contained" >Изменить</Button>
             </Grid>
             <Grid item>
-                <Button variant="contained" onClick>Удалить</Button>
+                <Button variant="contained" >Удалить</Button>
             </Grid>
         </Grid>
     )

@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import axios from 'axios';
+import http from './http-common';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 
-const TableAgGrid = () => {
+const CustomerTable = () => {
+  const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
-    axios.get('/').then((res) => console.log(res))
-  }, [serverUrl, roomId]);
+    http.get("/getCustomer").then((res) => {
+      if (res) {
+        setRowData(res.data.row[0])
+      }
+    })
+  }, []);
 
-
-  const [rowData] = useState([
-    { make: "Toyota", model: "Celica", price: 35000 },
-    { make: "Ford", model: "Mondeo", price: 32000 },
-    { make: "Porsche", model: "Boxster", price: 72000 }
-  ]);
+  // const [rowData] = useState([
+  //   { make: "Toyota", model: "Celica", price: 35000 },
+  //   { make: "Ford", model: "Mondeo", price: 32000 },
+  //   { make: "Porsche", model: "Boxster", price: 72000 }
+  // ]);
 
   const [columnDefs] = useState([
-    { field: 'make' },
-    { field: 'model' },
-    { field: 'price' }
+    { field: 'name' },
+    { field: 'age' },
+    { field: 'email' },
+    { field: 'date_birthday' }
   ])
 
   return (
@@ -34,4 +39,4 @@ const TableAgGrid = () => {
   );
 };
 
-export default TableAgGrid;
+export default CustomerTable;
