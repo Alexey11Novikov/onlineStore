@@ -1,5 +1,5 @@
-const sequelize = require("../config/db.config");
 const { DataTypes } = require("sequelize");
+const sequelize = require("../config/db.config");
 
 const Order = sequelize.define("order", {
     id: {
@@ -12,8 +12,10 @@ const Order = sequelize.define("order", {
 });
 
 (async () => {
-    await sequelize.sync().then(result => console.log(result))
-        .catch(err => console.log(err));
+    await sequelize
+    .sync()
+    .then(result => console.log(result))
+    .catch(err => console.log(err));
 })();
 
 module.exports = Order;

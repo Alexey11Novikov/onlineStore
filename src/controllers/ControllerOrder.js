@@ -1,7 +1,7 @@
 const Order = require("../models/order");
 const sequelize = require("../config/db.config");
 
-const create = async (req, res) => {
+const createOrder = async (req, res) => {
   try {
     const order = Order.create(req.body);
     return res.status(201).json({
@@ -53,4 +53,4 @@ const updateRow = async (req, res) => {
   }
 };
 
-module.exports = { updateRow, deleteRow, findAll, create }
+module.exports = { updateRow, deleteRow, findAll, createOrder }
