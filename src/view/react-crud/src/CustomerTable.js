@@ -30,7 +30,7 @@ const CustomerTable = () => {
   ])
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 400, width: 600 }}>
+    <div className="ag-theme-alpine" style={{ height: 300 }}>
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs}>

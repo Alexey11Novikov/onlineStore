@@ -14,7 +14,7 @@ const create = async (req, res) => {
 
 const findAll = async (req, res) => {
   try {
-    const row = await sequelize.query("SELECT * FROM customers ORDER By id ASC LIMIT 3");
+    const row = await sequelize.query("SELECT * FROM customers");
     if(row) {
       return res.status(200).json({ row });
     }

@@ -9,17 +9,21 @@ const OrderTable = () => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
-    http.get("/getOrder").then((res) => setRowData(res.data[0]))
+    http.get("/getOrder").then((res) => {
+      if (res) {
+        setRowData(res.data.row[0])
+      }
+    })
   }, []);
 
   const [columnDefs] = useState([
-    { field: 'make' },
-    { field: 'model' },
-    { field: 'price' }
+    { field: 'name' },
+    { field: 'customerid' },
+    { field: 'quantity' }
   ])
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 400, width: 600 }}>
+    <div className="ag-theme-alpine" style={{ height: 300 }}>
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs}>
