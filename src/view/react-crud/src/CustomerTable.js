@@ -1,37 +1,36 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import http from './http-common';
+import React, { useEffect, useState, useRef } from "react";
+import { AgGridReact } from "ag-grid-react";
+import http from "./http-common";
 
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
 
-const CustomerTable = () => {
+const CustomerTable = (props) => {
+  const { setSelect } = props;;
   const gridRef = useRef();
   const [rowData, setRowData] = useState([]);
-  const [selectedID, setSelectedID] = useState(0);
 
   useEffect(() => {
     http.get("/getCustomer").then((res) => {
       if (res) {
-        setRowData(res.data.row[0])
+        setRowData(res.data.row[0]);
       }
-    })
+    });
   }, []);
 
-
   const [columnDefs] = useState([
-    { field: 'name' },
-    { field: 'age' },
-    { field: 'email' },
-    { field: 'date_birthday' }
-  ])
+    { field: "name" },
+    { field: "age" },
+    { field: "email" },
+    { field: "date_birthday" },
+  ]);
 
   const getSelectedRows = () => {
     const selectedRows = gridRef.current.api.getSelectedRows();
     if (selectedRows) {
-      setSelectedID(selectedRows[0].id);
+      setSelect(selectedRows[0].id);
     }
-  }
+  };
 
   return (
     <div className="ag-theme-alpine" style={{ height: 300 }}>
@@ -39,9 +38,9 @@ const CustomerTable = () => {
         ref={gridRef}
         rowData={rowData}
         columnDefs={columnDefs}
-        rowSelection={'single'}
-        onSelectionChanged={getSelectedRows}>
-      </AgGridReact>
+        rowSelection={"single"}
+        onSelectionChanged={getSelectedRows}
+      ></AgGridReact>
     </div>
   );
 };
