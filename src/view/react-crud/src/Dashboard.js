@@ -145,7 +145,7 @@ function DashboardContent() {
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
                   <Buttons selectId={selectId} />
-                  <CustomerTable setSelect={(id) => selectId(id)} />
+                  <CustomerTable setSelect={(id) => setSelectId(id)} />
                 </Paper>
               </Grid>
               <Grid item xs={12} md={12} lg={12}>

@@ -2,6 +2,7 @@ const Customer = require("../models/customer");
 const sequelize = require("../config/db.config");
 
 const createRow = async (req, res) => {
+  if (!req.body) return res.sendStatus(400);
   try {
     const customer = await Customer.create(req.body);
     return res.status(201).json({
