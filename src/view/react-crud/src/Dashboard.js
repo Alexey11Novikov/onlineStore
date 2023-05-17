@@ -14,10 +14,12 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import Alert from '@mui/material/Alert';
 import { mainListItems } from "./listItems";
 import OrderTable from "./OrderTable";
 import CustomerTable from "./CustomerTable";
 import Buttons from "./Buttons";
+import ActionModal from "./ActionModal";
 
 const drawerWidth = 240;
 
@@ -70,6 +72,9 @@ const mdTheme = createTheme();
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   const [selectId, setSelectId] = React.useState();
+  const [selectedData, setSelectedData] = React.useState();
+  const [openModal, setOpenModal] = React.useState(false);
+  const [nameBtn, setNameBtn] = React.useState('');
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -144,8 +149,10 @@ function DashboardContent() {
               {/* Recent TableAgGrid */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <Buttons selectId={selectId} />
-                  <CustomerTable setSelect={(id) => setSelectId(id)} />
+                  <Buttons selectId={selectId} setOpenModal={(isOpen) => setOpenModal(isOpen)}
+                    setBtnName={(newNameBtn) => setNameBtn(newNameBtn)} />
+                  <CustomerTable setSelectID={(id) => setSelectId(id)}
+                    setSelectedData={(selectData) => setSelectedData(selectData)} />
                 </Paper>
               </Grid>
               <Grid item xs={12} md={12} lg={12}>
@@ -163,6 +170,8 @@ function DashboardContent() {
             </Grid>
           </Container>
         </Box>
+        <ActionModal selectId={selectId} open={openModal} nameBtn={nameBtn}
+          setOpen={(isOpen) => setOpenModal(isOpen)} selectedData={selectedData}/>
       </Box>
     </ThemeProvider>
   );

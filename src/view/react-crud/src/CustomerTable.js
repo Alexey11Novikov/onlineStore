@@ -6,7 +6,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const CustomerTable = (props) => {
-  const { setSelect } = props;;
+  const { setSelectID, setSelectedData } = props;;
   const gridRef = useRef();
   const [rowData, setRowData] = useState([]);
 
@@ -28,7 +28,8 @@ const CustomerTable = (props) => {
   const getSelectedRows = () => {
     const selectedRows = gridRef.current.api.getSelectedRows();
     if (selectedRows) {
-      setSelect(selectedRows[0].id);
+      setSelectedData(selectedRows[0]);
+      setSelectID(selectedRows[0].id);
     }
   };
 

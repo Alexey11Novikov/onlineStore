@@ -1,49 +1,32 @@
 import React from "react";
-import { Button, Grid } from "@mui/material";
-import http from "./http-common";
+import { Button, Grid, Alert } from "@mui/material";
+import { deleteRow } from './request';
 
 const Buttons = (props) => {
-    const { selectId } = props;
-    const add = () => {
-        http({
-            method: "POST",
-            url: "/createCustomer",
-            data: {
-                name: "Кузнецов А.М.",
-                age: 23,
-                email: "asdasd@asd.com",
-                date_birthday: "01.11.1999",
-            }
-        })
-            .then((res) => console.log(res.data));
-    };
+    const { selectId, setOpenModal, setBtnName } = props;
+    const onClickAction = (nameBtn) => {
+        setBtnName(nameBtn);
+        setOpenModal(true);
+    }
 
-    const change = (id) => {
-        http.patch("/updateCustomer/" + id, {
-            name: "Васечкин В.В.",
-            age: 22,
-            email: "aaxxz@rambler.ru",
-            date_birthday: "05.03.2001",
-        }).then((res) => {
-            console.log(res);
-        });
-    };
-
-    const deleteRow = (id) => {
-        http.delete("/deleteCustomer/" + id).then((res) => {
-            console.log(res);
-        });
-    };
+    const onClickActionChange = (nameBtn) => {
+        if (selectId === undefined) {
+           alert("Запись не выбрана! Выберите запись");
+        } else {
+            setBtnName(nameBtn);
+            setOpenModal(true);
+        }
+    }
 
     return (
         <Grid container spacing={1} sx={{ marginBottom: "5px" }}>
             <Grid item>
-                <Button variant="contained" onClick={add}>
+                <Button variant="contained" onClick={() => onClickAction("Добавить", true)}>
                     Добавить
                 </Button>
             </Grid>
             <Grid item>
-                <Button variant="contained" onClick={() => change(selectId)}>
+                <Button variant="contained" onClick={() => onClickActionChange("Изменить", true)}>
                     Изменить
                 </Button>
             </Grid>
