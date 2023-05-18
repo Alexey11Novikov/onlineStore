@@ -16,12 +16,6 @@ export const change = (id, data) => {
         url: "/updateCustomer/" + id,
         data: data
     })
-
-    // http.patch("/updateCustomer/" + id, {
-    //     data
-    // }).then((res) => {
-    //     return res.data;
-    // });
 };
 
 export const deleteRow = (id) => {
@@ -29,10 +23,3 @@ export const deleteRow = (id) => {
         console.log(res);
     });
 };
-
-
-
-// name: "Кузнецов А.М.",
-// age: 23,
-// email: "asdasd@asd.com",
-// date_birthday: "01.11.1999",
